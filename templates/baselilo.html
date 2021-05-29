@@ -1,6 +1,6 @@
-<!doctype html>
-<html lang="en">
-
+{% extends 'basepack.html' %}
+{% block tittle %}Signin | Signup{% endblock tittle %}
+{% block body %}
 <style>    
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
@@ -257,23 +257,27 @@ footer a {
    <h2>welcome to webers free E-books</h2>
   <div class="container" id="container">
 	 <div class="form-container sign-up-container">
-		 <form action="#">
+		 <form action="/signup" method='post'>
+		 {% csrf_token %}
 			 <h1>Create Account</h1>
 			 <span>use your email for registration</span>
-			 <input type="text" placeholder="Name" />
-			 <input type="email" placeholder="Email" />
-			 <input type="password" placeholder="Password" />
-			 <button>Sign Up</button>
+			 <input type="text" placeholder="unique username" id="username" name="username" required/>
+			 <input type="text" placeholder="first name" id="name" name="name" required/>
+			 <input type="text" placeholder="last name" id="last" name="last" required/>
+			 <input type="email" placeholder="Email" id="email" name="email" required/>
+			 <input type="password" placeholder="Password" id="password" name="password" required/>
+			 <button type='submit'>Sign Up</button>
+			
 		 </form>
 	 </div>
 	 <div class="form-container sign-in-container">
-		 <form action="#">
+		 <form action="/signin" method='post'>
+		 {% csrf_token %}
 			 <h1>Sign in</h1>
 			 <span>use your account</span>
-			 <input type="email" placeholder="Email" />
-			 <input type="password" placeholder="Password" />
-			 <a href="#">Forgot your password?</a>
-			 <button>Sign In</button>
+			 <input type="text" id="username" name="username" placeholder="Username" required/>
+			 <input type="password" id="password" name="password" placeholder="Password" required/>
+			 <button type= "submit">Sign In</button>
 		 </form>
 	 </div>
 	 <div class="overlay-container">
@@ -294,14 +298,13 @@ footer a {
 
 <footer>
 	<p>
-		Created with <i class="fa fa-heart">love</i> by
-		<a target="_blank">shubham</a>
-		to contact with team click
-		<a target="_blank" href="/">here</a>
+		© Copyright<i class="fa fa-heart">2021</i> by
+		<a target="_blank">Webers</a>		
 	</p>
 </footer>
-</body>
-<script>
+    
+
+ <script>
   const signUpButton = document.getElementById('signUp');
   const signInButton = document.getElementById('signIn');
   const container = document.getElementById('container');
@@ -314,4 +317,6 @@ footer a {
 	  container.classList.remove("right-panel-active");
   });
   </script>
-</html>
+
+{% endblock body %}
+
