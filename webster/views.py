@@ -17,6 +17,46 @@ def about(request):
 def contact(request):
     return render(request,'contact.html')
 
+def error(request):
+    context = {
+        "variable1": "404 !!",
+        "variable2": "Uh oh! Looks like you got lost.",
+        "variable3": "Please go back and sign in."
+    }
+    return render(request, 'message.html', context)
+
+def success(request):
+    context = {
+        "variable1": "Congrts !!",
+        "variable2": "Your Account is been created succesfully.",
+        "variable3": "Please go back and sign in."
+    }
+    return render(request, 'message.html', context)
+
+def logerror(request):
+    context = {
+        "variable1": "Alert !!",
+        "variable2": "Input error.",
+        "variable3": "No user found please go back and signin again."
+    }
+    return render(request, 'message.html', context)
+
+def usermatch(request):
+    context = {
+        "variable1": "Alert !!",
+        "variable2": "Input error.",
+        "variable3": "username exists please go back and signup again with different username."
+    }
+    return render(request, 'message.html', context)
+
+def mailmatch(request):
+    context = {
+        "variable1": "Alert !!",
+        "variable2": "Input error.",
+        "variable3": "email id exists please go back and signup again with different email."
+    }
+    return render(request, 'message.html', context)
+
 def signup(request):
      if request.method =='POST':
         username = request.POST['username']
@@ -27,7 +67,7 @@ def signup(request):
 
         if User.objects.filter(username=username).exists():
             
-            return HttpResponse("Input error -- Username Exists please to back and fill again")
+            return redirect('usermatch')
         
         if User.objects.filter(email=email).exists():
 
@@ -37,10 +77,9 @@ def signup(request):
         myuser.first_name = name
         myuser.last_name = last
         myuser.save()
-        messages.success(request,"Your Account Has Been Created Succesfully")
-        return redirect('home')
+        return redirect('success')
      
-     return HttpResponse('404 - Not Allowed')
+     return redirect('error')
 
 
 def signin(request):
@@ -53,13 +92,13 @@ def signin(request):
             messages.success(request,"logged in")
             return redirect("home")
         else:
-            return HttpResponse('Input error -- No user found please fo back and fill again')
+            return redirect('logerror')
     
-    return HttpResponse('404 - Not Allowed')
+    return redirect('error')
 
 def signout(request):
     if request.method =='POST':
         logout(request)
         return redirect('index')
         
-    return HttpResponse('404 - Not Allowed')
+    return redirect('error')
