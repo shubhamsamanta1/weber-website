@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from datetime import datetime
+from .models import Contact
 def index(request):
     return render(request,'main.html')
 
@@ -15,7 +16,16 @@ def about(request):
     return render(request,'about.html')
 
 def contact(request):
+    if request.method =='POST':
+        name = request.POST.get('name','')
+        email= request.POST.get('email','')
+        phone= request.POST.get('phone','')
+        query= request.POST.get('query','')
+        contact =Contact(name=name, phone=phone, email=email, query=query, date=datetime.today())
+        contact.save()
+        messages.success(request,"Your query is been submitted. Thank your writing us we will reach you shortly")
     return render(request,'contact.html')
+
 
 def error(request):
     context = {
@@ -71,7 +81,7 @@ def signup(request):
         
         if User.objects.filter(email=email).exists():
 
-            return HttpResponse("Input error -- Email Exists please to back and fill again")
+            return redirect('maimatch')
 
         myuser = User.objects.create_user(username=username, email=email, password=password)
         myuser.first_name = name
@@ -97,8 +107,7 @@ def signin(request):
     return redirect('error')
 
 def signout(request):
-    if request.method =='POST':
         logout(request)
         return redirect('index')
         
-    return redirect('error')
+    
