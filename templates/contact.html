@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block tittle %}Contact{% endblock tittle %}
 {% block body %}
+<div class="card bg-dark text-white">
+  <img src="static/imgmain.jpg" class="card-img" alt="...">
+<div class="card-img-overlay">
 <div class ="container my-5">
     <h3>Reach Us Reguarding Any Query</h3>
 <form action="/contact" method ="post">
@@ -23,7 +26,9 @@
       <label for="query">Enter your query</label>
       <textarea class="form-control my-3" id="query" name="query" rows="3"></textarea>
     </div>
-        <button type="submit" class="btn btn-secondary my-3">Submit</button>
+        <button type="submit" class="btn btn-danger my-3">Submit</button>
   </form>
+</div>
+</div>
 </div>
 {% endblock body %}

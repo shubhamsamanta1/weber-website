@@ -257,6 +257,11 @@ footer a {
 }
 </style>
 <body>
+	{% for messages in messages %}
+<div class="alert alert-{{messages.tags}} alert-dismissible fade show" role="alert">
+  <strong>Message:</strong> {{messages}}
+</div>
+{% endfor %}
    <h2>welcome to webers free E-books</h2>
   <div class="container" id="container">
 	 <div class="form-container sign-up-container">

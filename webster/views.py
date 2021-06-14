@@ -26,47 +26,6 @@ def contact(request):
         messages.success(request,"Your query is been submitted. Thank your writing us we will reach you shortly")
     return render(request,'contact.html')
 
-
-def error(request):
-    context = {
-        "variable1": "404 !!",
-        "variable2": "Uh oh! Looks like you got lost.",
-        "variable3": "Please go back and sign in."
-    }
-    return render(request, 'message.html', context)
-
-def success(request):
-    context = {
-        "variable1": "Congrts !!",
-        "variable2": "Your Account is been created succesfully.",
-        "variable3": "Please go back and sign in."
-    }
-    return render(request, 'message.html', context)
-
-def logerror(request):
-    context = {
-        "variable1": "Alert !!",
-        "variable2": "Input error.",
-        "variable3": "No user found please go back and signin again."
-    }
-    return render(request, 'message.html', context)
-
-def usermatch(request):
-    context = {
-        "variable1": "Alert !!",
-        "variable2": "Input error.",
-        "variable3": "username exists please go back and signup again with different username."
-    }
-    return render(request, 'message.html', context)
-
-def mailmatch(request):
-    context = {
-        "variable1": "Alert !!",
-        "variable2": "Input error.",
-        "variable3": "email id exists please go back and signup again with different email."
-    }
-    return render(request, 'message.html', context)
-
 def signup(request):
      if request.method =='POST':
         username = request.POST['username']
@@ -77,19 +36,22 @@ def signup(request):
 
         if User.objects.filter(username=username).exists():
             
-            return redirect('usermatch')
+            messages.success(request,"username exists please go back and signup again with different username.")
+            return redirect('index')
         
         if User.objects.filter(email=email).exists():
 
-            return redirect('maimatch')
+            messages.success(request,"email id is used please go back and signup again with different email.")
+            return redirect('index')
 
         myuser = User.objects.create_user(username=username, email=email, password=password)
         myuser.first_name = name
         myuser.last_name = last
         myuser.save()
-        return redirect('success')
+        messages.success(request,"Congrats, your account is sucesfully created please signin onto your account")
+        return redirect('index')
      
-     return redirect('error')
+     return redirect('index')
 
 
 def signin(request):
@@ -102,12 +64,14 @@ def signin(request):
             messages.success(request,"logged in")
             return redirect("home")
         else:
-            return redirect('logerror')
+            messages.success(request,"No user found please go back and signin again & if new kindly signup first")
+            return redirect('index')
     
-    return redirect('error')
+    return redirect('index')
 
 def signout(request):
         logout(request)
+        messages.success(request,"You have succesfully signout")
         return redirect('index')
         
     
