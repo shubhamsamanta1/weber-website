@@ -7,7 +7,6 @@ from django.contrib import messages
 from datetime import datetime
 from .models import Contact
 from . models import Product
-from math import ceil
 
 def index(request):
     return render(request,'main.html')
@@ -40,9 +39,19 @@ def home6(request):
     productss = reversed(Product.objects.all().filter(category = "Motivational"))
     return render(request, 'home6.html',{'productss': productss})
 
-
 def about(request):
     return render(request,'about.html')
+
+def search(request):
+    query = request.GET['buscar']
+    if len(query)>50:
+        productss = Product.objects.none()
+    else:
+        productssname = Product.objects.all().filter(Product_name__icontains = query)
+        productscategory = Product.objects.all().filter(category__icontains = query)
+        productsauther = Product.objects.all().filter(auther__icontains = query)
+        productss = productssname.union(productscategory).union(productsauther)
+    return render(request, 'search.html',{'productss': productss, 'query': query })
 
 def contact(request):
     if request.method =='POST':
