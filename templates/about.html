@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block tittle %}About{% endblock tittle %}
-{% block body %}
-<style>
-    .container {
+
+{% block css %} 
+.container {
   margin-top: 40mm;
   justify-content: center;
   align-items: center; 
@@ -13,9 +13,10 @@
     font-size: large;
     font-weight: bolder;
 }
-</style>
+{% endblock %}
+{% block body %}
+
 <div class="card bg-dark text-white">
-    <img src="static/imgmain.jpg" class="card-img" alt="...">
     <div class="card-img-overlay">
         <div class="container text-center">
             <h1 class="card-title align-self-xl-center">About us</h1>

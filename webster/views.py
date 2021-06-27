@@ -6,11 +6,40 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from datetime import datetime
 from .models import Contact
+from . models import Product
+from math import ceil
+
 def index(request):
     return render(request,'main.html')
 
 def home(request):
-    return render(request,'home.html')
+    productss = reversed(Product.objects.all())
+    return render(request, 'home.html',{'productss': productss})
+
+def home1(request):
+    productss = reversed(Product.objects.all().filter(category = "Comic"))
+    return render(request, 'home1.html',{'productss': productss})
+
+def home2(request):
+    productss = reversed(Product.objects.all().filter(category = "Novel"))
+    return render(request, 'home2.html',{'productss': productss})
+
+def home3(request):
+    productss = reversed(Product.objects.all().filter(category = "Story"))
+    return render(request, 'home3.html',{'productss': productss})
+
+def home4(request):
+    productss = reversed(Product.objects.all().filter(category = "Autobiography"))
+    return render(request, 'home4.html',{'productss': productss})
+
+def home5(request):
+    productss = reversed(Product.objects.all().filter(category = "Educational"))
+    return render(request, 'home5.html',{'productss': productss})
+
+def home6(request):
+    productss = reversed(Product.objects.all().filter(category = "Motivational"))
+    return render(request, 'home6.html',{'productss': productss})
+
 
 def about(request):
     return render(request,'about.html')
