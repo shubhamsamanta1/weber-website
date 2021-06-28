@@ -11,33 +11,160 @@ from . models import Product
 def index(request):
     return render(request,'main.html')
 
-def home(request):
+def all(request):
     productss = reversed(Product.objects.all())
-    return render(request, 'home.html',{'productss': productss})
+    variablemain = 'List of all books availble currently:'
+    variable1 = 'All'
+    variable2 = 'Comics'
+    variable3 = 'Novel'
+    variable4 = 'Story'
+    variable5 = 'Autobiography'
+    variable6 = 'Educational'
+    variable7 = 'Motiational'
+    link1 = '/all'
+    link2 = '/comic'
+    link3 = '/novel'
+    link4 = '/story'
+    link5 = '/autobiography'
+    link6 = '/educational'
+    link7 = '/motivational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
 
-def home1(request):
-    productss = reversed(Product.objects.all().filter(category = "Comic"))
-    return render(request, 'home1.html',{'productss': productss})
+def comic(request):
+    productss = reversed(Product.objects.all().filter(category = 'Comic'))
+    variablemain = 'List of all Comic books availble currently:'
+    variable1 = 'Comics'
+    variable2 = 'All'
+    variable3 = 'Novel'
+    variable4 = 'Story'
+    variable5 = 'Autobiography'
+    variable6 = 'Educational'
+    variable7 = 'Motiational'
+    link1 = '/comic'
+    link2 = '/all'
+    link3 = '/novel'
+    link4 = '/story'
+    link5 = '/autobiography'
+    link6 = '/educational'
+    link7 = '/motivational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
 
-def home2(request):
-    productss = reversed(Product.objects.all().filter(category = "Novel"))
-    return render(request, 'home2.html',{'productss': productss})
+def novel(request):
+    productss = reversed(Product.objects.all().filter(category = 'Novel'))
+    variablemain = 'List of all Novels availble currently:'
+    variable1 = 'Novel'
+    variable2 = 'All'
+    variable3 = 'Comics'
+    variable4 = 'Story'
+    variable5 = 'Autobiography'
+    variable6 = 'Educational'
+    variable7 = 'Motiational'
+    link1 = '/novel'
+    link2 = '/all'
+    link3 = '/comic'
+    link4 = '/story'
+    link5 = '/autobiography'
+    link6 = '/educational'
+    link7 = '/motivational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
 
-def home3(request):
-    productss = reversed(Product.objects.all().filter(category = "Story"))
-    return render(request, 'home3.html',{'productss': productss})
+def story(request):
+    productss = reversed(Product.objects.all().filter(category = 'Story'))
+    variablemain = 'List of all Story books availble currently:'
+    variable1 = 'Story'
+    variable2 = 'All'
+    variable3 = 'Comics'
+    variable4 = 'Novel'
+    variable5 = 'Autobiography'
+    variable6 = 'Educational'
+    variable7 = 'Motiational'
+    link1 = '/story'
+    link2 = '/all'
+    link3 = '/comic'
+    link4 = '/novel'
+    link5 = '/autobiography'
+    link6 = '/educational'
+    link7 = '/motivational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
 
-def home4(request):
-    productss = reversed(Product.objects.all().filter(category = "Autobiography"))
-    return render(request, 'home4.html',{'productss': productss})
+def autobiography(request):
+    productss = reversed(Product.objects.all().filter(category = 'Autobiography'))
+    variablemain = 'List of Autobiography books availble currently:'
+    variable1 = 'Autobiography'
+    variable2 = 'All'
+    variable3 = 'Comics'
+    variable4 = 'Novel'
+    variable5 = 'Story'
+    variable6 = 'Educational'
+    variable7 = 'Motiational'
+    link1 = '/autobiography'
+    link2 = '/all'
+    link3 = '/comic'
+    link4 = '/novel'
+    link5 = '/story'
+    link6 = '/educational'
+    link7 = '/motivational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
 
-def home5(request):
-    productss = reversed(Product.objects.all().filter(category = "Educational"))
-    return render(request, 'home5.html',{'productss': productss})
+def educational(request):
+    productss = reversed(Product.objects.all().filter(category = 'Educational'))
+    variablemain = 'List of all Educational books availble currently:'
+    variable1 = 'Educational'
+    variable2 = 'All'
+    variable3 = 'Comics'
+    variable4 = 'Novel'
+    variable5 = 'Story'
+    variable6 = 'Autobiography'
+    variable7 = 'Motiational'
+    link1 = '/educational'
+    link2 = '/all'
+    link3 = '/comic'
+    link4 = '/novel'
+    link5 = '/story'
+    link6 = '/autobiography'
+    link7 = '/motivational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
 
-def home6(request):
-    productss = reversed(Product.objects.all().filter(category = "Motivational"))
-    return render(request, 'home6.html',{'productss': productss})
+def motivational(request):
+    productss = reversed(Product.objects.all().filter(category = 'Motivational'))
+    variablemain = 'List of all Motivational books availble currently:'
+    variable1 = 'Motiational'
+    variable2 = 'All'
+    variable3 = 'Comics'
+    variable4 = 'Novel'
+    variable5 = 'Story'
+    variable6 = 'Autobiography'
+    variable7 = 'Educational'
+    link1 = '/motivational'
+    link2 = '/all'
+    link3 = '/comic'
+    link4 = '/novel'
+    link5 = '/story'
+    link6 = '/autobiography'
+    link7 = '/educational'
+    context = {'productss': productss, 'variablemain' : variablemain, 'variable1': variable1, 'variable2': variable2,
+    'variable3': variable3, 'variable4': variable4, 'variable5': variable5, 'variable6': variable6, 'variable7': variable7,
+    'link1': link1, 'link2': link2, 'link3': link3, 'link4': link4, 'link5': link5, 'link6': link6, 'link7': link7}
+    return render(request, 'home.html', context)
+
 
 def about(request):
     return render(request,'about.html')
@@ -100,7 +227,7 @@ def signin(request):
         if user is not None:
             login(request, user)
             messages.success(request,"logged in")
-            return redirect("home")
+            return redirect("all")
         else:
             messages.success(request,"No user found please go back and signin again & if new kindly signup first")
             return redirect('index')
