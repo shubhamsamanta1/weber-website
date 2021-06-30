@@ -11,6 +11,19 @@ from . models import Product
 def index(request):
     return render(request,'main.html')
 
+def profile(request):
+    users =request.user.username
+    name = request.user.first_name
+    last = request.user.last_name
+    email = request.user.email
+    context = {
+        'user': users,
+        'name': name,
+        'last': last,
+        'email' : email,
+    }
+    return render(request, 'profile.html', context)
+
 def all(request):
     productss = reversed(Product.objects.all())
     variablemain = 'List of all books availble currently:'
@@ -167,7 +180,28 @@ def motivational(request):
 
 
 def about(request):
-    return render(request,'about.html')
+    sub = User.objects.all()
+    subcount = len(sub)
+    book = Product.objects.all()
+    bookcount = len(book)
+    comic = Product.objects.all().filter(category = 'Comic')
+    comiccount = len(comic)
+    novel = Product.objects.all().filter(category = 'Novel')
+    novelcount = len(novel)
+    story = Product.objects.all().filter(category = 'Story')
+    storycount = len(story)
+    auto = Product.objects.all().filter(category = 'Autobiography')
+    autocount = len(auto)
+    edu = Product.objects.all().filter(category = 'Educational')
+    educount = len(edu)
+    mot = Product.objects.all().filter(category = 'Motivational')
+    motcount = len(mot)
+    context = {
+        'subcount' : subcount, 'bookcount': bookcount, 'comiccount': comiccount,
+        'novelcount': novelcount, 'storycount':storycount, 'autocount':autocount, 'educount':educount,
+         'motcount':motcount }
+    
+    return render(request,'about.html', context)
 
 def search(request):
     query = request.GET['buscar']
@@ -239,4 +273,3 @@ def signout(request):
         messages.success(request,"You have succesfully signout")
         return redirect('index')
         
-    

@@ -52,7 +52,6 @@ footer a {
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% if user.is_authenticated %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,14 +60,13 @@ footer a {
            Welcome {{request.user}}
          </a>
          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-           <li><a class="dropdown-item" href="#">Your Wishlist</a></li>
+           <li><a class="dropdown-item" href="/profile">Profile</a></li>
            <li><a class="dropdown-item" href="/signout">logout</a></li>
          </ul>
        </li>
-       {% endif %}
        
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link active" aria-current="page" href="/all">Home</a>
         </li>
 
          <li class="nav-item">

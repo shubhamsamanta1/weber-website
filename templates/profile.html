@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block tittle %}profile{% endblock tittle %}
+{% block css %} 
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+{% endblock %}
+{% block body %}
+<div class="card bg-dark text-white">
+  <div class="card-img-overlay">
+  <div class ="container text-center">
+      <h1 style=" margin-top: 3cm;"><u> Your Profile Details </u></h1>
+      <h3 style=" margin-top: 1cm;">Username :&nbsp{{ user }}</h3>
+      <h3 style=" margin-top: 1cm;">Name :&nbsp{{ name }} {{last}}</h3>
+      <h3 style=" margin-top: 1cm;">E-mail Id :&nbsp{{ email }}</h3>
+     <button type="button" class="btn btn-outline-primary" style="margin-top: 1cm;">Edit</button>
+  </div>
+  </div>
+  </div>
+{% endblock body %}

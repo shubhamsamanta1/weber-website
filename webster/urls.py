@@ -5,6 +5,7 @@ from webster import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('all', views.all, name='all'),
+    path('profile', views.profile, name='profile'),
     path('comic', views.comic, name='comic'),
     path('novel', views.novel, name='novel'),
     path('story', views.story, name='story'),
